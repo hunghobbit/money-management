@@ -53,11 +53,11 @@ const logIn = async () => {
     <div class="flex justify-center items-center mt-6">
       <a
         @click="$router.push('/forgot-password')"
-        class="inline-block mr-12 align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+        class="inline-block mr-12 align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 hover:cursor-pointer"
         >Forgot Password?</a>
       <a
         @click="$router.push('/register')"  
-        class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+        class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 hover:cursor-pointer"
         >Not have account? Signup</a>
     </div>
   </form>

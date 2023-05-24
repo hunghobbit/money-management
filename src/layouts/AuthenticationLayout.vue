@@ -4,6 +4,7 @@
       <img src="https://vitejs.dev/logo-with-shadow.png" alt="logo"/>
     </div>
     <div class="p-5 my-12 bg-white rounded-xl shadow-lg lg:w-5/12 md:w-5/6 m-0 mx-auto">
+        
       <slot />
     </div>
   </div>

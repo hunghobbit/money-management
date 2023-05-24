@@ -15,6 +15,9 @@ const logOut = async () => {
         if(!response) {
             throw new Error('Could not complete the sign out');
         }
+
+        sessionStorage.removeItem('currentUser');
+        localStorage.setItem('client_app', JSON.stringify({ hasAccount: true, userAgent: navigator.userAgent, isLogged: false }));
         error.value = null;
         isPending.value = false;
         return response;

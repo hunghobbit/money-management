@@ -1,6 +1,5 @@
 <template>
-    <div class=""></div>
-    <section class="p-6 my-3 bg-white w-full h-50 m-0 mx-auto">
+    <section class="p-6 bg-white w-full h-50 m-0 mx-auto">
         <section class="w-full flex justify-between items-center max-sm:flex-col gap-y-4  sm:gap-x-2">
             <div class="bg-green-500 text-white p-10 w-full rounded-lg shadow-md">
                 <h2>This Month Income</h2>

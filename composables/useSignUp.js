@@ -17,6 +17,8 @@ const signUp = async (email, password, fullName) => {
         }
         
         await updateProfile(res.user, { displayName : fullName });
+
+        localStorage.setItem('client_app', JSON.stringify({ hasAccount: true, userAgent: navigator.userAgent, isLogged: false }));
         error.value = null;
         isPending.value = false;
         return res;

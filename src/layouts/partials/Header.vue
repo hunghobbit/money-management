@@ -1,10 +1,25 @@
 <script setup>
 import SimpleDropdown from "../../components/SimpleDropdown.vue";
-import { ref } from "vue";
+import { useUser } from "../../../composables/useUser.js";
+import { useRouter } from "vue-router";
+import { computed, ref } from "vue";
+import {
+  MenuItem
+} from '@headlessui/vue'
+import { reactive } from "vue";
 defineProps(["authenticated", "userInfo"]);
+const userMenus = reactive([
+  {
+    displayContext: "Profile",
+    href: "/profile",
+  },
 
-initTE({Dropdown, Ripple});
+]);
+const router = useRouter();
+const { userInfo } = useUser();
+const user = computed(() => userInfo());
 const toggle = ref(false);
+const authenticated = computed(() => user.value !== null);
 </script>
 <template>
   <header class="flex justify-between items-center sm:bg-emerald-200">
@@ -113,14 +128,18 @@ const toggle = ref(false);
       </ul>
 
       <ul class="flex flex-wrap justify-start items-center gap-x-3 mr-3">
-        <li v-if="authenticated">
+        <li v-if="user">
           <SimpleDropdown
-            :title="userInfo.displayName"
-            :dataList="[
-              { displayContent: 'Profile' },
-              { displayContent: 'Logout' },
-            ]"
-          />
+
+            :title="user.displayName"
+            :isUserMenuDropdown="true"
+          >
+           <MenuItem class="hover:bg-gray-100" v-for="item in userMenus">
+            <a class="block px-4 py-3 rounded:sm text-sm" :href="item.href">
+              <span>{{ item.displayContext }}</span>
+            </a>
+          </MenuItem>
+        </SimpleDropdown>
         </li>
         <li v-if="!authenticated">
           <button

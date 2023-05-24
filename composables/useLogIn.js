@@ -13,6 +13,9 @@ const signUp = async (email, password) => {
         error.value = 'Incorrect login credentials';
         return;
     }   
+    if(localStorage.getItem('client_app') === null) {
+        localStorage.setItem('client_app', JSON.stringify({ hasAccount: true, userAgent: navigator.userAgent, isLogged: true }));
+    }
     sessionStorage.setItem('currentUser', JSON.stringify(response.user.uid));
     error.value = null;
     return response;
