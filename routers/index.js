@@ -129,32 +129,22 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    const clientApp = JSON.parse(localStorage.getItem('client_app'));
-    let hasAccount = false;
-    console.log(clientApp);
-    if (clientApp !== null) {
-        hasAccount = clientApp.hasAccount;
-    }
-    const currentUser = sessionStorage.getItem('currentUser')
-    const requiredAuth = to.meta.requiredAuth;
-
-    // nếu người dùng chưa có tài khoản và truy cập vào Home thì chuyển hướng sang Welcome
-    if (!hasAccount && to.name === 'home') {
-        next({ name: 'welcome' });
-
-    } else if (!hasAccount && requiredAuth) {
-        // nếu người dùng chưa có tài khoản và truy cập vào các trang khác có yêu cầu xác thực người dùng thì chuyển hướng sang trang đăng ký
-
-        next({ name: 'register' });
-
-    } else if (hasAccount && !currentUser && requiredAuth) {
-        // nếu người dùng đã có tài khoản, chưa đăng nhập và truy cập vào các trang khác có yêu cầu xác thực người dùng thì chuyển hướng sang trang đăng nhập
-        next({ name: 'login' });
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    const requiredAuth = to.matched.some(record => record.meta.requiredAuth);
+    
+    if (requiredAuth && !currentUser) {
+        next('/login');
     } else {
-        to.meta.authenticated = currentUser !== null;
         next();
     }
-
 });
-
+router.afterEach((to, from) => {
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+    const requiredAuth = to.matched.some(record => record.meta.requiredAuth);
+    if (requiredAuth && !currentUser) {
+        next('/login');
+    } else {
+        next();
+    }
+});
 export default router;

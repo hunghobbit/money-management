@@ -9,7 +9,7 @@
         If you did not receive the email
     </p>
     <p class="text-sm font-thin mt-3 px-3">
-        <button class="p-3 rounded-lg bg-emerald-500 hover:bg-slate-200 text-white cursor-pointer font-semibold" @click="verifyEmail">Click here to request another</button>
+        <button class="p-3 rounded-lg bg-emerald-500 hover:bg-slate-200 text-white cursor-pointer font-semibold hover:shadow-md hover:shadow-green-300 hover:text-green-500" @click="verifyEmail">Click here to request another</button>
     </p>
     
 </template>

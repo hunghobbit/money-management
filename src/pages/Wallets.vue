@@ -27,42 +27,51 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              class="w-full max-w-5xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
             >
               <DialogTitle
                 as="h3"
                 class="text-lg font-medium leading-6 text-gray-900"
               >
-                Add a new wallet
+                Add Wallet
               </DialogTitle>
               <div class="mt-2">
-                <form
-                  class="p-5 grid grid-cols-2 gap-y-4"
-                  @submit="&quot;#&quot;;"
-                  method="post"
-                >
-                  <!-- Choose wallet Category -->
-                  <Listbox v-model="category" class="w-1/3 container flex justify-between">
-                    <ListboxLabel class="text-md text-gray-600 font-semibold">
-                      Choose Category
-                    </ListboxLabel>
-
-                    <ListboxButton">
-                      <span class="block truncate">{{ category }}</span>
-                    </ListboxButton>
-                    
-                    <ListboxOptions class="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                      <ListboxOption v-for="item in categoriesList" :key="item" :value="item">
-                        {{ items }}
+                <form class="p-3 my-3 grid grid-cols-1 gap-y-3" method="post">
+                  <div class="w-1/2">
+                    <Listbox v-model="category">
+                    <ListboxButton class="text-gray-800 inline-flex justify-between items-center p-2 focus:outline-offset-2 focus:outline-lime-400">
+                    {{
+                      category
+                    }}
+                    <ChevronDownIcon
+                      class="-mr-1 ml-2 h-5 w-5 text-gray-400"
+                      aria-hidden="true"
+                    />
+                  </ListboxButton>
+                    <ListboxOptions
+                      class="p-2 max-h-60 overflow-auto"
+                    >
+                      <ListboxOption
+                        class="text-gray-800 hover:bg-lime-400 hover:text-white hover:font-semibold hover:cursor-pointer"
+                        v-for="cat in categories"
+                        :key="cat.id"
+                        :value="cat.category_name"
+                      >
+                        {{ cat.category_name }}
                       </ListboxOption>
                     </ListboxOptions>
                   </Listbox>
+                  </div>
                 </form>
               </div>
 
               <div class="mt-4">
-                <button type="button" @click="closeModal" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                    Cancel
+                <button
+                  type="button"
+                  class="inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                  @click="closeModal"
+                >
+                  Cancel
                 </button>
               </div>
             </DialogPanel>
@@ -71,69 +80,44 @@
       </div>
     </Dialog>
   </TransitionRoot>
-
-  <div class="my-6 p-6 bg-white rounded-md">
-    <div class="w-full">
-      <button
-        type="button"
-        @click="openModal"
-        class="w-full sm:w-fit bg-green-500 text-white p-6 my-2 mx-5 rounded-2xl text-lg font-semibold"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="inline w-6 h-6 active:bg-green-800"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-
-        Add a wallets
-      </button>
-      <ul class="grid grid-cols-4 gap-2">
-        <li
-          class="p-4 rounded-md bg-gray-100"
-          v-for="wallet in result"
-          :key="wallet.id"
-        >
-          <h2>{{ wallet.name }}</h2>
-          <p>{{ wallet.balance }}</p>
-        </li>
-      </ul>
-    </div>
+  <div class="rounded-xl shadow-md bg-white p-5 mt-16">
+    <button
+      @click="openModal"
+      class="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg"
+    >
+      Add Wallet
+    </button>
   </div>
 </template>
 
 <script setup>
 import { ref, reactive } from "vue";
+import { CATEGORIES } from "../../utils/factory.js";
 import {
   TransitionRoot,
   TransitionChild,
   Dialog,
-  DialogPanel,
   DialogTitle,
   Listbox,
-  ListboxLabel,
   ListboxButton,
   ListboxOptions,
   ListboxOption,
 } from "@headlessui/vue";
-import { CATEGORIES } from '../../utils/factory.js'
+import {
+  ChevronDownIcon
+} from '@heroicons/vue/20/solid'
 
+const isOpen = ref(false);
+const categories = reactive(CATEGORIES);
+const category = ref(categories[0].category_name);
+console.log(categories);
 
-const categoriesList = reactive(CATEGORIES);
-const isOpen = ref(true);
-const category = ref("");
 function closeModal() {
   isOpen.value = false;
 }
+
 function openModal() {
   isOpen.value = true;
 }
+
 </script>
