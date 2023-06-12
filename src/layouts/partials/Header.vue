@@ -22,7 +22,7 @@ const toggle = ref(false);
 const authenticated = computed(() => user.value !== null);
 </script>
 <template>
-  <header class="flex justify-between items-center sm:bg-emerald-200">
+  <header class="flex justify-between items-center sm:bg-emerald-200 p-0">
     <div class="sm:hidden sm:bg-white sticky flex justify-between items-center">
       <button @click="toggle = !toggle" class="p-2 m-2">
         <svg
@@ -58,6 +58,8 @@ const authenticated = computed(() => user.value !== null);
 
       <ul class="w-full mt-6 flex flex-col gap-3">
         <li>
+        </li>
+        <li>
           <router-link
             class="block text-lg w-full px-6 py-3 focus-visible:bg-slate-200"
             to="/wallets"
@@ -71,6 +73,30 @@ const authenticated = computed(() => user.value !== null);
             to="/transactions"
           >
             Transactions
+          </router-link>
+        </li>
+        <li>
+          <router-link
+            class="block text-lg w-full px-6 py-3 focus-visible:bg-slate-200"
+            to="/categories"
+          >
+            Categories
+          </router-link>
+        </li>
+        <li>
+          <router-link
+            class="block text-lg w-full px-6 py-3 focus-visible:bg-slate-200"
+            to="/contacts"
+          >
+            Contacts
+          </router-link>
+        </li>
+        <li>
+          <router-link
+            class="block text-lg w-full px-6 py-3 focus-visible:bg-slate-200"
+            to="/profile"
+          >
+            Profile
           </router-link>
         </li>
       </ul>

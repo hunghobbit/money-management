@@ -6,10 +6,7 @@ defineProps({
     type: String,
     required: true,
   },
-  dataList: {
-    type: Array,
-    required: true,
-  },
+ 
   isUserMenuDropdown: {
     type: Boolean,
     required: false,
@@ -45,7 +42,7 @@ defineProps({
       >
         <div class="py-1">
           <slot/>
-          <form @submit="$router.push({name : 'logout'})" v-if="isUserMenuDropdown" method="POST">
+          <form @submit.prevent="$router.push({name : 'logout'})" v-if="isUserMenuDropdown" method="POST">
             <MenuItem v-slot="{ active }">
               <button
                 type="submit"

@@ -10,16 +10,37 @@
           </h2>
           <nav class="list-none mb-10">
             <li>
-              <a class="text-gray-600 hover:text-gray-800">First Link</a>
+              <router-link class="text-gray-600 hover:text-gray-800" to="/"
+                >Home</router-link
+              >
             </li>
             <li>
-              <a class="text-gray-600 hover:text-gray-800">Second Link</a>
+              <router-link
+                class="text-gray-600 hover:text-gray-800"
+                to="/wallets"
+                >Wallets</router-link
+              >
             </li>
             <li>
-              <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+              <router-link
+                class="text-gray-600 hover:text-gray-800"
+                to="/transactions"
+                >Transactions</router-link
+              >
             </li>
             <li>
-              <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+              <router-link
+                class="text-gray-600 hover:text-gray-800"
+                to="/categories"
+                >Categories</router-link
+              >
+            </li>
+            <li>
+              <router-link
+                class="text-gray-600 hover:text-gray-800"
+                to="/contacts"
+                >Contacts</router-link
+              >
             </li>
           </nav>
         </div>

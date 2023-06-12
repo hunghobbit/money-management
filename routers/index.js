@@ -66,6 +66,28 @@ const routes = [
         path: '/profile',
         component: () => import('../src/pages/Profile.vue'),
         name: 'profile',
+        children: [
+            {
+                path: 'edit',
+                component: () => import('../src/pages/profiles/ProfilesEdit.vue'),
+                name: 'profile-edit'
+            },
+            {
+                path: 'change-password',
+                component: () => import('../src/pages/profiles/ProfilesResetPassword.vue'),
+                name: 'profile-change-password',
+            },
+            {
+                path: 'verify-email',
+                component: () => import('../src/pages/profiles/ProfilesEmailVerify.vue'),
+                name: 'profile-verify-email'
+            },
+            {
+                path: 'logout',
+                component: () => import('../src/pages/profiles/ProfilesLogout.vue'),
+                name: 'profile-logout'
+            }
+        ],
         meta: {
             requiredAuth: true,
             title: 'Profile',
@@ -138,13 +160,5 @@ router.beforeEach((to, from, next) => {
         next();
     }
 });
-router.afterEach((to, from) => {
-    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    const requiredAuth = to.matched.some(record => record.meta.requiredAuth);
-    if (requiredAuth && !currentUser) {
-        next('/login');
-    } else {
-        next();
-    }
-});
+
 export default router;

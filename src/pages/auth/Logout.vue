@@ -7,7 +7,6 @@ const router = useRouter();
 async function onLogOut() {
     try {
         await logOut();
-        router.push({ name: "home" });
     } catch (err) {
         error.value = err.message;
         console.log(error.value);
@@ -16,6 +15,8 @@ async function onLogOut() {
 onMounted(() => {
     onLogOut();
 });
+
+router.push({ name: "login" });
 </script>
 <template>
     <h1>Logout Page</h1>

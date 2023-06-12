@@ -7,6 +7,10 @@ import { useRouter } from "vue-router";
 const email = ref("");
 const router = useRouter();
 const resetPassword = async () => {
+  let actionCodeSettings = {
+    url: "http://localhost:5173/reset-password",
+    handleCodeInApp: true,
+  };
   await sendPasswordResetEmail(auth, email.value);
   router.push({ name: "reset-password" });
 };
@@ -32,7 +36,7 @@ const resetPassword = async () => {
         <button
           class="bg-emerald-500 text-white px-4 py-3 rounded font-medium w-full"
         >
-          Find Email
+          Send Reset Email
         </button>
       </div>
     </form>

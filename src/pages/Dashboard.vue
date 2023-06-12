@@ -12,20 +12,20 @@
         </section>         
         <section class="text-gray-600 body-font">
           <div class="container px-5 py-24 mx-auto">
-            <div class="flex flex-wrap -m-4 text-center">
-              <div class="p-4 sm:w-1/4 w-1/2">
+            <div class="flex flex-wrap -m-4 text-center flex-col sm:flex-row">
+              <div class="p-4 sm:w-1/4 w-full">
                 <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900">2.7K</h2>
                 <p class="leading-relaxed">Users</p>
               </div>
-              <div class="p-4 sm:w-1/4 w-1/2">
+              <div class="p-4 sm:w-1/4 w-full">
                 <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900">1.8K</h2>
                 <p class="leading-relaxed">Subscribes</p>
               </div>
-              <div class="p-4 sm:w-1/4 w-1/2">
+              <div class="p-4 sm:w-1/4 w-full">
                 <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900">35</h2>
                 <p class="leading-relaxed">Wallets</p>
               </div>
-              <div class="p-4 sm:w-1/4 w-1/2">
+              <div class="p-4 sm:w-1/4 w-full">
                 <h2 class="title-font font-medium sm:text-4xl text-3xl text-gray-900">4</h2>
                 <p class="leading-relaxed">Transactions</p>
               </div>

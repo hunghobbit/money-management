@@ -24,6 +24,8 @@ const onSubmit = () => {
 </script>
 
 <template>
+  <!-- Alert Modals -->
+
   <form @submit.prevent="onSubmit" class="w-full rounded-lg max-sm:min-h-screen">
     <h1 class="text-center text-2xl font-semibold">Register</h1>
     <div class="my-12 sm:px-12 max-sm:my-24">

@@ -10,6 +10,9 @@ const logOut = async () => {
     error.value = null;
     try {
         const res = await signOut(auth);
+        auth.currentUser = null;
+        sessionStorage.removeItem('user');
+        
         error.value = null;
         return res;
     } catch (err) {
