@@ -17,7 +17,8 @@ export default {
             'groupProfiles': [
                 './src/pages/profiles/ProfilesEmailVerify.vue',
                 './src/pages/profiles/ProfilesResetPassword.vue',
-                './src/pages/profiles/ProfilesLogout.vue'
+                './src/pages/profiles/ProfilesLogout.vue',
+                './src/pages/profiles/ProfilesEdit.vue',
             ]
         },
     },

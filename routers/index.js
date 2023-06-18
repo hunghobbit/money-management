@@ -1,5 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import { use } from '../composables/useSignOut.js';
+import { auth } from '../configs/firebase.js';
+const user = auth.currentUser;
+const requiredAuth = (to, from, next) => {
+    // const token = localStorage.getItem('token');
+    // if (token) {
+    //     next();
+    // } else {
+    //     next({ name: 'login' });
+    
+    if(user) console.log('Before Enter: ', user);
+    next();
+}
+
 const routes = [
     {
         path: '/',
@@ -7,60 +19,66 @@ const routes = [
 
         component: () => import('../src/pages/Dashboard.vue'),
         meta: {
-            requiredAuth: true,
+            // requiredAuth: true,
             title: 'Dashboard',
             headingDescription: 'Dashboard',
-        }
+        },
+        beforeEnter: requiredAuth
     },
     {
         path: '/welcome',
         name: 'welcome',
         component: () => import('../src/pages/Welcome.vue'),
         meta: {
-            requiredAuth: false,
+            // requiredAuth: false,
             title: 'Welcome',
             headingDescription: 'Welcome',
-        }
+        },
+        beforeEnter: requiredAuth
     },
     {
         path: '/wallets',
         component: () => import('../src/pages/Wallets.vue'),
         name: 'wallets',
         meta: {
-            requiredAuth: true,
+            // requiredAuth: true,
             title: 'Wallets',
             headingDescription: 'Wallets',
-        }
+        },
+        beforeEnter: requiredAuth
     },
     {
         path: '/transactions',
         component: () => import('../src/pages/Transactions.vue'),
         name: 'transactions',
         meta: {
-            requiredAuth: true,
+            // requiredAuth: true,
             title: 'Transactions',
             headingDescription: 'All Transactions',
-        }
+        },
+        beforeEnter: requiredAuth
     },
     {
         path: '/categories',
         component: () => import('../src/pages/Categories.vue'),
         name: 'categories',
         meta: {
-            requiredAuth: true,
+            // requiredAuth: true,
             title: 'Categories',
             headingDescription: 'Categories',
-        }
+        },
+        beforeEnter: requiredAuth
     },
     {
         path: '/contacts',
         component: () => import('../src/pages/Contacts.vue'),
         name: 'contacts',
         meta: {
-            requiredAuth: true,
+            // requiredAuth: true,
             title: 'Contacts',
             headingDescription: 'Contacts',
-        }
+        },
+        beforeEnter: requiredAuth
     },
     {
         path: '/profile',
@@ -92,7 +110,8 @@ const routes = [
             requiredAuth: true,
             title: 'Profile',
             headingDescription: 'Profile',
-        }
+        },
+        beforeEnter: requiredAuth
     },
     {
         path: '/login',
@@ -100,7 +119,7 @@ const routes = [
         name: 'login',
         meta: {
             layout: 'authentication'
-        },
+        }
     },
     {
         path: '/logout',
@@ -148,17 +167,6 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes,
-});
-
-router.beforeEach((to, from, next) => {
-    const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-    const requiredAuth = to.matched.some(record => record.meta.requiredAuth);
-    
-    if (requiredAuth && !currentUser) {
-        next('/login');
-    } else {
-        next();
-    }
 });
 
 export default router;

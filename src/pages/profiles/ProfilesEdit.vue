@@ -1,10 +1,9 @@
-//* Vue3 template for composition API without setup() *//
 <template>
   <div class="rounded-2xl p-5 mt-16">
     <div class="mb-4">
       <h2 class="font-semibold text-xl">Edit profile</h2>
     </div>
-    <form @submit.prevent="formSubmited" method="post">
+    <form @submit.prevent="formSubmitted" method="post">
       <div class="relative mb-4">
         <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
         <input
@@ -14,11 +13,12 @@
           name="email"
           class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
         @input="editEmail"
+        autocomplete="off"
           />
       </div>
 
       <div class="relative mb-4">
-        <label for="Name" class="leading-7 text-sm text-gray-600"
+        <label for="username" class="leading-7 text-sm text-gray-600"
           >Username</label
         >
         <input
@@ -28,6 +28,7 @@
           name="username"
           class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
         @input="editUsername"
+          autocomplete="off"
           />
       </div>
       <div class="mb-4">
@@ -40,15 +41,18 @@
 </template>
 <script setup>
 import { useUser } from "../../../composables/useUser.js";
-import { updateProfile } from "firebase/auth";
+import  { updateProfile }  from "firebase/auth";
 import { ref, computed } from "vue";
+
 const { userInfo } = useUser();
 const user = computed(() => userInfo());
+
+
 const editUsername = ref(""),
   editEmail = ref(""),
   currentUsername = computed(() => user.value.displayName),
   currentEmail = computed(() => user.value.email);
-const formSubmited = async (e) => {
+const formSubmitted = async (e) => {
     // set the new username and email
     const user = userInfo();
     const newUsername = editUsername.value;

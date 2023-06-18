@@ -48,11 +48,6 @@ import {
   DialogTitle,
 } from '@headlessui/vue'
 
-const dialog = reactive({
-    dialogTitle: 'Dialog Title',
-    dialogText: 'Dialog Text',
-    dialogCloseButton: 'Close'
-});
 
 
 </script>

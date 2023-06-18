@@ -33,7 +33,7 @@
 
 <script setup>
 import { ref, reactive } from "vue";
-import { CATEGORIES } from "../../utils/factory.js";
+import useCollection from "../../composables/useCollections";
 import {
   
   DialogTitle,
@@ -44,12 +44,19 @@ import {
 } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/20/solid";
 import SimpleModal from "../components/SimpleModal.vue";
-
+const categories = ref([]);
 const isOpen = ref(false);
-const categories = reactive(CATEGORIES);
-const category = ref(categories[0].category_name);
-console.log(categories);
+const wallets = reactive([]);
+const { collections, error, getAll } = useCollection("categories");
 
+try {
+  getAll();
+  categories.value = collections.value;
+} catch (err) {
+  console.log(err);
+}
+
+console.log(collections.value);
 function closeModal() {
   isOpen.value = false;
 }

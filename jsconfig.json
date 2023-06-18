@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"],
+            "composables/*": ["composables/*"],
+            "@components/*": ["src/components/*"],
+            "@layouts/*": ["src/layouts/*"],
+            "@pages/*": ["src/pages/*"],
+            "@auth/*": ["src/pages/auth/*"],
+            "@profiles/*": ["src/pages/profiles/*"],
+        },
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "types": ["vite/client"]
+    },
+    "vueCompilerOptions": {
+        "extensions": [
+            ".vue",
+            ".js"
+        ]
+    },
+    "include": ["/src/**/*", "/composables/**/*"],
+    "exclude": ["node_modules",".gitignore", ".vs_code", "dist"]
+}
