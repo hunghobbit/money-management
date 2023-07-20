@@ -1,7 +1,7 @@
 <script setup>
 import ProfilesResetPassword from "./profiles/ProfilesResetPassword.vue";
 import ProfilesEmailVerify from "./profiles/ProfilesEmailVerify.vue";
-import ProfilesLogout from "./profiles/ProfilesLogout.vue";
+import ProfileDelete from "./profiles/ProfileDelete.vue";
 import ProfilesEdit from "./profiles/ProfilesEdit.vue";
 </script>
 
@@ -9,6 +9,6 @@ import ProfilesEdit from "./profiles/ProfilesEdit.vue";
   <ProfilesEdit />
   <ProfilesResetPassword />
   <ProfilesEmailVerify />
-  <ProfilesLogout />
+  <ProfileDelete />
 
 </template>

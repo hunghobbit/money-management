@@ -5,7 +5,7 @@
                 <h2>This Month Income</h2>
                 <h2>$ 0.00</h2>
             </div>
-            <div class="bg-red-500 text-white p-10 w-full rounded-lg shadow-md">
+            <div class="bg-red-800 text-white p-10 w-full rounded-lg shadow-md">
                 <h2>This Month Outcome</h2>
                 <h2>$ 0.00</h2>
             </div>
@@ -33,7 +33,7 @@
           </div>
         </section>
         
-        <section>
+        <section class="w-full">
             <canvas id="chart"></canvas>
         </section>
     </section>

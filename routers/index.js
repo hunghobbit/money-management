@@ -101,9 +101,9 @@ const routes = [
                 name: 'profile-verify-email'
             },
             {
-                path: 'logout',
-                component: () => import('../src/pages/profiles/ProfilesLogout.vue'),
-                name: 'profile-logout'
+                path: 'delete',
+                component: () => import('../src/pages/profiles/ProfileDelete.vue'),
+                name: 'profile-delete'
             }
         ],
         meta: {

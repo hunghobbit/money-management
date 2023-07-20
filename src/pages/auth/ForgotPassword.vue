@@ -2,17 +2,20 @@
 import { auth } from "../../../configs/firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 
 const email = ref("");
-const router = useRouter();
+let alertMsg = ref("")
 const resetPassword = async () => {
   let actionCodeSettings = {
-    url: "http://localhost:5173/reset-password",
+    url: "http://localhost:5173/login",
     handleCodeInApp: true,
   };
-  await sendPasswordResetEmail(auth, email.value);
-  router.push({ name: "reset-password" });
+  let rstPssReq = await sendPasswordResetEmail(auth, email.value, actionCodeSettings);
+  if(rstPssReq){
+    alertMsg.value = "An email has been sent your email address! Please check and click to attached link!"
+  } else {
+    alertMsg.value = "..."
+  }
 };
 </script>
 <template>
@@ -20,7 +23,8 @@ const resetPassword = async () => {
   <div
     class="mt-4 w-full p-4 max-sm:p-3 text-lg max-sm:text-sm sm:rounded-lg max-sm:rounded-full bg-slate-100 focus:outline-1 focus:outline-blue-400"
   >
-    <form @submit.prevent="resetPassword" action="">
+    <form @submit.prevent="resetPassword" method="post">
+      <p v-if="alertMsg != ''" class="mb-4 text-sm text-light">{{ alertMsg }}</p>
       <div class="mb-4">
         <label for="email" class="sr-only">Email</label>
         <input
@@ -36,7 +40,7 @@ const resetPassword = async () => {
         <button
           class="bg-emerald-500 text-white px-4 py-3 rounded font-medium w-full"
         >
-          Send Reset Email
+          Send Reset Password
         </button>
       </div>
     </form>

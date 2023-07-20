@@ -1,121 +1,35 @@
 <template>
-  <!-- <ul>
-    <li v-for="el in collections" :key="el">
-        {{ el.categoryName }}
-    </li>
-  </ul> -->
-  <div class="container flex justify-center mx-auto">
-      <div class="flex flex-col">
-          <div class="w-full">
-              <div class="border-b border-gray-200 shadow">
-                  <table class="divide-y divide-gray-300 ">
-                      <thead class="bg-gray-50">
-                          <tr>
-                              <th class="px-6 py-2 text-xs text-gray-500">
-                                  ID
-                              </th>
-                              <th class="px-6 py-2 text-xs text-gray-500">
-                                  Name
-                              </th>
-                              <th class="px-6 py-2 text-xs text-gray-500">
-                                  Email
-                              </th>
-                              <th class="px-6 py-2 text-xs text-gray-500">
-                                  Created_at
-                              </th>
-                              <th class="px-6 py-2 text-xs text-gray-500">
-                                  Edit
-                              </th>
-                              <th class="px-6 py-2 text-xs text-gray-500">
-                                  Delete
-                              </th>
-                          </tr>
-                      </thead>
-                      <tbody class="bg-white divide-y divide-gray-300">
-                          <tr class="whitespace-nowrap">
-                              <td class="px-6 py-4 text-sm text-gray-500">
-                                  1
-                              </td>
-                              <td class="px-6 py-4">
-                                  <div class="text-sm text-gray-900">
-                                      Jon doe
-                                  </div>
-                              </td>
-                              <td class="px-6 py-4">
-                                  <div class="text-sm text-gray-500">jhondoe@example.com</div>
-                              </td>
-                              <td class="px-6 py-4 text-sm text-gray-500">
-                                  2021-1-12
-                              </td>
-                              <td class="px-6 py-4">
-                                  <a href="#" class="px-4 py-1 text-sm text-indigo-600 bg-indigo-200 rounded-full">Edit</a>
-                              </td>
-                              <td class="px-6 py-4">
-                                  <a href="#" class="px-4 py-1 text-sm text-red-400 bg-red-200 rounded-full">Delete</a>
-                              </td>
-                          </tr>
-                          <tr class="whitespace-nowrap">
-                              <td class="px-6 py-4 text-sm text-gray-500">
-                                  1
-                              </td>
-                              <td class="px-6 py-4">
-                                  <div class="text-sm text-gray-900">
-                                      Jon doe
-                                  </div>
-                              </td>
-                              <td class="px-6 py-4">
-                                  <div class="text-sm text-gray-500">jhondoe@example.com</div>
-                              </td>
-                              <td class="px-6 py-4 text-sm text-gray-500">
-                                  2021-1-12
-                              </td>
-                              <td class="px-6 py-4">
-                                  <a href="#" class="px-4 py-1 text-sm text-indigo-600 bg-indigo-200 rounded-full">Edit</a>
-                              </td>
-                              <td class="px-6 py-4">
-                                  <a href="#" class="px-4 py-1 text-sm text-red-400 bg-red-200 rounded-full">Delete</a>
-                              </td>
-                          </tr>
-                          <tr class="whitespace-nowrap">
-                              <td class="px-6 py-4 text-sm text-gray-500">
-                                  1
-                              </td>
-                              <td class="px-6 py-4">
-                                  <div class="text-sm text-gray-900">
-                                      Jon doe
-                                  </div>
-                              </td>
-                              <td class="px-6 py-4">
-                                  <div class="text-sm text-gray-500">jhondoe@example.com</div>
-                              </td>
-                              <td class="px-6 py-4 text-sm text-gray-500">
-                                  2021-1-12
-                              </td>
-                              <td class="px-6 py-4">
-                                  <a href="#" class="px-4 py-1 text-sm text-indigo-600 bg-indigo-200 rounded-full">Edit</a>
-                              </td>
-                              <td class="px-6 py-4">
-                                  <a href="#" class="px-4 py-1 text-sm text-red-400 bg-red-200 rounded-full">Delete</a>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-wrap -m-4 gap-1 justify-between items-center">
+        <button v-for="cat in categories" :key="cat.id" class="lg:w-1/4 md:w-1/2 p-4 w-full hover:shadow-lg border-l-4 border-l-slate-400">
+          <div class="mt-4">
+            <h2 class="text-gray-900 title-font text-lg font-medium">{{ cat.categoryName }}</h2>
+            <p class="leading-relaxed text-base">
+              ... description ...
+            </p>
           </div>
+        </button>
       </div>
-  </div>
+    </div>
+  </section>
 </template>
+
 <script setup>
-import useCollection from '../../composables/useCollections.js';
+import { ref } from "vue";
+// import useReadFireStore from "../../composables/useReadFireStore";
+import useCollection from "../../composables/useCollection";
+
+let categories = ref([])
 const props = defineProps({
   title: String,
 });
-const { collections, error, getAll } = useCollection('categories');
-try{
-  getAll();
-  console.log('Collections' + collections.value);
-}catch(err){
-  error.value = err.message;
-  console.log(error.value);
-}
+let catsColl = null;
+
+const loadData = async () => {
+  catsColl = await useCollection("categories");
+  categories.value = catsColl.myCollection; 
+};
+loadData()
 </script>
+
