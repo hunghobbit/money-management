@@ -24,7 +24,7 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { useUser } from "../../../composables/useUser.js";
 import { sendEmailVerification } from "firebase/auth";
 import { ShieldCheckIcon } from "@heroicons/vue/20/solid";

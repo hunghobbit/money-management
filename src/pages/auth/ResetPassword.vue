@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 import { auth } from "../../../configs/firebase.js";
 import { updatePassword } from "firebase/auth";

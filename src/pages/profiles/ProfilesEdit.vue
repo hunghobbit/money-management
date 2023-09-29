@@ -39,7 +39,7 @@
     </form>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { useUser } from "../../../composables/useUser.js";
 import  { updateProfile }  from "firebase/auth";
 import { ref, computed } from "vue";

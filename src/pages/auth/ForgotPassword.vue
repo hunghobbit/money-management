@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { auth } from "../../../configs/firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { ref } from "vue";

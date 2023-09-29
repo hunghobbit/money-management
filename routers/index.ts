@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { RouteRecordRaw, Router, createRouter, createWebHistory } from 'vue-router'
 import { auth } from '../configs/firebase.js';
 const user = auth.currentUser;
-const requiredAuth = (to, from, next) => {
+const requiredAuth = (_to: any, _from: any, next: () => void) => {
     // const token = localStorage.getItem('token');
     // if (token) {
     //     next();
@@ -12,7 +12,7 @@ const requiredAuth = (to, from, next) => {
     next();
 }
 
-const routes = [
+const routes: readonly RouteRecordRaw[] = [
     {
         path: '/',
         name: 'home',
@@ -164,9 +164,9 @@ const routes = [
 
 ];
 
-const router = createRouter({
+const router:Router = createRouter({
     history: createWebHistory(),
-    routes,
+    routes
 });
 
 export default router;

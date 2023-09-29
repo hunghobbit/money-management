@@ -1,0 +1,55 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": [
+    "env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "composables/**/*.js",
+    "composables/**/*.jsx",
+    "composables/**/*.ts",
+    "composables/**/*.tsx",
+    "composables/**/*.vue",
+    "composables/*.js",
+    "composables/*.jsx",
+    "composables/*.ts",
+    "composables/*.tsx",
+    "composables/*.vue",
+    "configs/*.ts"
+    
+  ],
+  "exclude": ["src/**/__tests__/*"],
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "lib": ["esnext", "dom"],
+    "isolatedModules": true,
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/pages/*": ["./src/pages/*"],
+      "@/layouts/*": ["./src/layouts/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/assets/*": ["./src/assets/*"],
+      "@configs/*": ["./configs/*"],
+      "@composables/*": ["./composables/*"]
+    }
+  },
+  "vueCompilerOptions": {
+    "target": 3.3,
+    "extensions": [".vue", ".ts"]
+  }
+  
+}

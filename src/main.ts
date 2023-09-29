@@ -1,4 +1,4 @@
-import { createApp } from 'vue/dist/vue.esm-bundler.js'
+
 import { onAuthStateChanged } from "firebase/auth"
 import { createPinia } from 'pinia'
 import { registerGlobalAsyncComponents } from '../utils/imports.js'
@@ -6,6 +6,7 @@ import { auth } from '../configs/firebase.js'
 import router from '../routers/index.js'
 import './assets/style.css'
 import App from './App.vue'
+import { createApp} from "vue"
 
 
 

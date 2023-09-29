@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // import { initializeApp } from "firebase-admin";
-import { getFirestore } from "firebase/firestore";
+import { Firestore, getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -17,12 +17,12 @@ const firebaseConfig = {
     messagingSenderId: "902262574033",
     appId: "1:902262574033:web:8e09cadead4d86174aaef0"
 };
-// Initialize Firebase
-const firebase = initializeApp(firebaseConfig);
+// Initialize Firebase 
+const firebase: FirebaseApp = initializeApp(firebaseConfig);
 
-const fireStoreCore = getFirestore(firebase);
+const fireStoreCore: Firestore = getFirestore(firebase);
 
 const auth = getAuth(firebase); 
 
 
-export { firebase, fireStoreCore, auth };
+export { firebase, fireStoreCore,  auth };

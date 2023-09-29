@@ -14,7 +14,7 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import SimpleModal from "../../components/SimpleModal.vue"
 import { ref } from 'vue'
 const open = ref(false)

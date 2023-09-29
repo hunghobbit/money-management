@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useRouter } from "vue-router";
 import { useSignOut } from "../../../composables/useSignOut.js";
 import { onMounted } from "vue";
@@ -20,5 +20,5 @@ router.push({ name: "login" });
 </script>
 <template>
     <h1>Logout Page</h1>
-    <div>Loading <span class="floating-dot">.</span><span class="floating-dot">.</span><span class="floating-dot">.</span></div>
+    <div>Signing Out <span class="floating-dot">.</span><span class="floating-dot">.</span><span class="floating-dot">.</span></div>
 </template>

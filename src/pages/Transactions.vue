@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from "vue"
 import useCollection from "../../composables/useCollection"
 // import { ChevronUpDownIcon } from "@heroicons/vue/20/solid"

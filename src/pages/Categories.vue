@@ -15,7 +15,7 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from "vue";
 // import useReadFireStore from "../../composables/useReadFireStore";
 import useCollection from "../../composables/useCollection";

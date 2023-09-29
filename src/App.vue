@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useRoute } from "vue-router";
 import { computed, onMounted } from "vue";
 import { DEFAULT_LAYOUT } from "../constants/index.js";
