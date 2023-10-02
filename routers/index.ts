@@ -1,18 +1,18 @@
-import { RouteRecordRaw, Router, createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type NavigationGuardNext, type RouteLocationNormalized, type RouteLocationNormalizedLoaded } from 'vue-router'
 import { auth } from '../configs/firebase.js';
 const user = auth.currentUser;
-const requiredAuth = (_to: any, _from: any, next: () => void) => {
+const requiredAuth = (_to: RouteLocationNormalized, _from: RouteLocationNormalizedLoaded, next: NavigationGuardNext) => {
     // const token = localStorage.getItem('token');
     // if (token) {
     //     next();
     // } else {
     //     next({ name: 'login' });
-    
-    if(user) console.log('Before Enter: ', user);
+    if (user?.isAnonymous) next({ name: 'welcome' })
+    if (user) console.log('Before Enter: ', user);
     next();
 }
 
-const routes: readonly RouteRecordRaw[] = [
+const routes = [
     {
         path: '/',
         name: 'home',
@@ -164,8 +164,15 @@ const routes: readonly RouteRecordRaw[] = [
 
 ];
 
-const router:Router = createRouter({
+const router = createRouter({
     history: createWebHistory(),
+    scrollBehavior: (to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded, savedPosition) => {
+        if (savedPosition) {
+            return savedPosition;
+        } else {
+            return { left: 0, top: 0, behavior: 'auto' }
+        }
+    },
     routes
 });
 

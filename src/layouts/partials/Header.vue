@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SimpleDropdown from "../../components/SimpleDropdown.vue";
-import { useUser } from "@composables/useUser";
+import { useUser } from "~/composables/useUser";
 import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import {

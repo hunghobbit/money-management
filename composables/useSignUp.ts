@@ -7,7 +7,7 @@ import {
 
 const error = ref(null);
 const isPending = ref(false);
-const signUp = async (email, password, fullName) => {
+const signUp = async (email:string, password:string, fullName:string) => {
     isPending.value = true; 
     error.value = null;
     try {
@@ -23,9 +23,8 @@ const signUp = async (email, password, fullName) => {
         isPending.value = false;
         
         return res;
-    } catch (err) {
-        console.log(err.message);
-        error.value = err.message;
+    } catch (err:any) {
+        error.value = err?.message;
     }
 }
 

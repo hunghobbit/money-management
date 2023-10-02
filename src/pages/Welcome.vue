@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import path from "path";
 let authenticated = ref(false);
-console.log(import.meta.url);
 </script>
 
 <template>

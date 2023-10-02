@@ -18,8 +18,12 @@
     "composables/*.ts",
     "composables/*.tsx",
     "composables/*.vue",
-    "configs/*.ts"
-    
+    "configs/*.ts",
+    "plugins/*.ts",
+    "plugins/**/*.ts",
+    "plugins/**/*.js",
+    "plugins/**/*.vue",
+    "constants/*.ts"
   ],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
@@ -38,18 +42,21 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
+      "~/*": ["./*"],
       "@/*": ["./src/*"],
       "@/pages/*": ["./src/pages/*"],
       "@/layouts/*": ["./src/layouts/*"],
       "@/components/*": ["./src/components/*"],
       "@/assets/*": ["./src/assets/*"],
-      "@configs/*": ["./configs/*"],
-      "@composables/*": ["./composables/*"]
+      "@/stores/*": ["./src/stores/*"],
+      "~/configs/*": ["./configs/*"],
+      "~/composables/*": ["./composables/*"],
+      "~/constants/*": ["./constants/*"],
+      "~/plugins/*": ["./plugins/*"]
     }
   },
   "vueCompilerOptions": {
     "target": 3.3,
     "extensions": [".vue", ".ts"]
   }
-  
 }

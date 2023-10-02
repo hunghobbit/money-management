@@ -6,9 +6,12 @@ import ProfilesEdit from "./profiles/ProfilesEdit.vue";
 </script>
 
 <template>
+  <div>
+    
   <ProfilesEdit />
   <ProfilesResetPassword />
   <ProfilesEmailVerify />
   <ProfileDelete />
 
+  </div>
 </template>

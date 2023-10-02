@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router";
-import { computed, onMounted } from "vue";
-import { DEFAULT_LAYOUT } from "../constants/index.js";
+import { computed } from "vue";
 import PageHeading from "./layouts/partials/PageHeading.vue";
 const routes = useRoute();
 const layout = computed(
-  () => (routes.meta.layout || DEFAULT_LAYOUT) + "-layout"
+  () => (routes.meta.layout || 'common') + "-layout"
 );
 
 </script>
@@ -22,11 +21,9 @@ const layout = computed(
   </div> -->
   <component :is="layout">
     <template #heading>
-      <PageHeading
-        :title="routes.meta.title"
-        :headingDescription="routes.meta.headingDescription"
-      />
+      <PageHeading :title="routes.meta.title" :headingDescription="routes.meta.headingDescription" />
     </template>
-    <router-view> </router-view>
+
+    <router-view></router-view>
   </component>
 </template>

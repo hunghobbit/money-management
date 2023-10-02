@@ -62,6 +62,6 @@ const formSubmitted = async (e) => {
       displayName: newUsername,
       email: newEmail,
     });
-    this.$router.refresh();
+    userRouter().refresh();
 }
 </script>

@@ -1,4 +1,4 @@
-import { auth } from "@configs/firebase.js";
+import { auth } from "../configs/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { ref, toValue } from "vue";
    

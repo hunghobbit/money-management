@@ -1,4 +1,5 @@
 <template>
+  <div class="wrapper">
   <SimpleModal modal-title="Wallet - New" :is-open="isOpen">
     <div class=" bg-white m-0 mx-auto p-5 mb-2 max-sm:w-full">
       <form @submit.prevent="addWalletDoc" method="post">
@@ -28,14 +29,12 @@
   </SimpleModal>
 
 
-  <div class="w-3/4 bg-slate-50 m-0 mx-auto p-5 max-sm:w-full">
-    <button @click="toggleModal" type="button">Add New Wallet</button>
+  <div id="wallet-actions" class="w-3/4 bg-slate-50 m-0 mx-auto p-5 max-sm:w-full">
+    <button type="button" disabled><SolidWallet /></button>
+    <button @click="toggleModal" type="button"><OutlineNewWallet :w="24" :h="24" /></button>
   </div>
-  <div class="w-3/4 bg-slate-50 m-0 mx-auto p-5 max-sm:w-full" v-if="wallets.length === 0">
-    <div class="mt-2 mb-4 mx-auto text-xl font-light text-gray-500">You have not any wallet, yet! Press above button to
-      create a new!</div>
-  </div>
-  <div class="w-3/4 bg-slate-50 m-0 mx-auto p-5 max-sm:w-full" v-else-if="wallets.length > 0">
+
+  <div class="w-3/4 bg-slate-50 m-0 mx-auto p-5 max-sm:w-full" v-if="wallets.length > 0">
     <h5 class="text-center font-bold">Your Wallets</h5>
     <ul class="mt-3">
       <Disclosure class="mb-1" :as="'li'" v-slot="{ open }" v-for="wallet in wallets" :key="wallet.id">
@@ -53,21 +52,27 @@
       </Disclosure>
     </ul>
   </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue"
 import { ChevronUpIcon } from "@heroicons/vue/20/solid"
-import useCollection from "../../composables/useCollection";
 import SimpleModal from '@/components/SimpleModal.vue';
+import SolidWallet from '@/components/Icons/SolidWallet.vue';
+import OutlineNewWallet from '@/components/Icons/OutlineNewWallet.vue'
+
+import { useWalletsStore } from "@/stores/wallets";
 
 
 var walletName = ref("");
 var walletNote = ref("");
 var walletBalance = ref(0)
-let wallets = ref([]);
-let walletsColl = null;
+const walletStore = useWalletsStore();
+
+const { error, wallets, addWallet, getWallets  } = walletStore;
+
 
 let isOpen = ref(false);
 let toggleModal = () => {
@@ -75,16 +80,44 @@ let toggleModal = () => {
 }
 
 const loadData = async () => {
-  walletsColl = await useCollection("wallets");
-  wallets.value = walletsColl.myCollection;
-
+  await getWallets();
   console.log(wallets);
+  
 };
 
-loadData();
 
-const addWalletDoc = (name, note, balance) => {
-
+const addWalletDoc = async () => {
+  const res:{success: boolean, message: string} = await addWallet(walletName.value, walletNote.value, walletBalance.value);
+  
+  if(res){
+    console.log(res);
+    isOpen.value = false;
+    alert(res.message);
+    self.location.reload();  
+  }
 }
 
+loadData();
 </script>
+
+<style scoped>
+#wallet-actions{
+  display: inline-flex;
+  gap: 10px;
+}
+
+#wallet-actions > button {
+  transition: all 0.5s ease;
+  background-color: inherit;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 2px white;
+}
+#wallet-actions > button:first-child{
+  background-color: rgb(217, 215, 215);
+}
+#wallet-actions > button:not(:first-child):hover{
+  background-color: white;
+  box-shadow: 1px 2px lightgray;
+}
+</style>

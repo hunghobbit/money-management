@@ -13,6 +13,10 @@ export default defineConfig({
   resolve: {
     alias: [
       {
+        find: "~",
+        replacement: fileURLToPath(new URL("./", import.meta.url)),
+      },
+      {
         find: "@",
         replacement: fileURLToPath(new URL("./src", import.meta.url)),
       },
@@ -36,12 +40,24 @@ export default defineConfig({
         replacement: fileURLToPath(new URL("./src/assets", import.meta.url)),
       },
       {
-        find: "@configs",
-        replacement: fileURLToPath(new URL('./configs', import.meta.url))
+        find: "@/stores",
+        replacement: fileURLToPath(new URL("./src/stores", import.meta.url)),
       },
       {
-        find:"@composables",
-        replacement: fileURLToPath(new URL("./composables", import.meta.url))
+        find: "~/configs",
+        replacement: fileURLToPath(new URL("./configs", import.meta.url)),
+      },
+      {
+        find: "~/composables",
+        replacement: fileURLToPath(new URL("./composables", import.meta.url)),
+      },
+      {
+        find: "~/constants",
+        replacement: fileURLToPath(new URL("./constants", import.meta.url)),
+      },
+      {
+        find: "~/plugins",
+        replacement: fileURLToPath(new URL("./plugins", import.meta.url)),
       }
     ],
   },
